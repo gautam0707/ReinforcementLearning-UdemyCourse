@@ -63,7 +63,7 @@ class Grid: # Environment
     # possibly buggy but simple way to get all states
     # either a position that has possible next actions
     # or a position that yields a reward
-    return set(self.actions.keys() + self.rewards.keys())
+    return set(list(self.actions.keys()) + list(self.rewards.keys()))
 
 
 def standard_grid():

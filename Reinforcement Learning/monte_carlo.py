@@ -18,7 +18,7 @@ def play_game(grid, policy):
   # we would never end up at certain states, but we still want to measure their value
   start_states = grid.actions.keys()
   start_idx = np.random.choice(len(start_states))
-  grid.set_state(start_states[start_idx])
+  grid.set_state(list(start_states)[start_idx])
 
   s = grid.current_state()
   states_and_rewards = [(s, 0)] # list of tuples of (state, reward)

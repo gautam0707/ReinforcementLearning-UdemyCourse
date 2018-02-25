@@ -6,24 +6,24 @@ from grid_world import standard_grid
 SMALL_ENOUGH = 1e-3 # threshold for convergence
 
 def print_values(V, g):
-  for i in xrange(g.width):
-    print "---------------------------"
-    for j in xrange(g.height):
+  for i in range(g.width):
+    print("---------------------------")
+    for j in range(g.height):
       v = V.get((i,j), 0)
       if v >= 0:
-        print " %.2f|" % v,
+        print(" %.2f|" % v,end='')
       else:
-        print "%.2f|" % v, # -ve sign takes up an extra space
-    print ""
+        print("%.2f|" % v,end='') # -ve sign takes up an extra space
+    print()
 
 
 def print_policy(P, g):
-  for i in xrange(g.width):
-    print "---------------------------"
-    for j in xrange(g.height):
+  for i in range(g.width):
+    print("---------------------------")
+    for j in range(g.height):
       a = P.get((i,j), ' ')
-      print "  %s  |" % a,
-    print ""
+      print("  %s  |" % a,end='')
+    print()
 
 if __name__ == '__main__':
   # iterative policy evaluation
@@ -68,9 +68,9 @@ if __name__ == '__main__':
 
     if biggest_change < SMALL_ENOUGH:
       break
-  print "values for uniformly random actions:"
+  print("values for uniformly random actions:")
   print_values(V, grid)
-  print "\n\n"
+  print("\n\n")
 
   ### fixed policy ###
   policy = {
@@ -110,5 +110,5 @@ if __name__ == '__main__':
 
     if biggest_change < SMALL_ENOUGH:
       break
-  print "values for fixed policy:"
+  print("values for fixed policy:")
   print_values(V, grid)
