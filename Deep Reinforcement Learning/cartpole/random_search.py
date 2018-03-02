@@ -14,13 +14,14 @@ def get_action(s, w):
   return 1 if s.dot(w) > 0 else 0
 
 
-def play_one_episode(env, params):
+def play_one_episode(env, params, final=False):
   observation = env.reset()
   done = False
   t = 0
 
   while not done and t < 10000:
-    # env.render()
+    if final:
+        env.render()
     t += 1
     action = get_action(observation, params)
     observation, reward, done, info = env.step(action)
@@ -30,11 +31,11 @@ def play_one_episode(env, params):
   return t
 
 
-def play_multiple_episodes(env, T, params):
+def play_multiple_episodes(env, T, params, final=False):
   episode_lengths = np.empty(T)
 
   for i in range(T):
-    episode_lengths[i] = play_one_episode(env, params)
+    episode_lengths[i] = play_one_episode(env, params, final)
 
   avg_length = episode_lengths.mean()
   print("avg length:", avg_length)
@@ -64,4 +65,4 @@ if __name__ == '__main__':
 
   # play a final set of episodes
   print("***Final run with final weights***")
-  play_multiple_episodes(env, 100, params)
+  play_multiple_episodes(env, 100, params, True)
